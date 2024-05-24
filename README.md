@@ -1,1 +1,1 @@
-# js-practice
+# TS-practice
