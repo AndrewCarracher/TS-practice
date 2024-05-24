@@ -33,20 +33,50 @@ function flatten(multiArr: any[][]) {
 
 // create an objects detailing voter catergories and who voted
 function voterResults(voters: voter[]) {
-    return {
-        numYoungVotes: voters.reduce((acc: number, curr: voter) => ((curr.age > 17 && curr.age < 26 && curr.voted) ? acc + 1 : acc + 0), 0),
-        numYoungPeople: voters.reduce((acc: number, curr: voter) => ((curr.age > 17 && curr.age < 26) ? acc + 1 : acc + 0), 0),
-        numMidVotesPeople: voters.reduce((acc: number, curr: voter) => ((curr.age > 25 && curr.age < 36 && curr.voted) ? acc + 1 : acc + 0), 0),
-        numMidsPeople: voters.reduce((acc: number, curr: voter) => ((curr.age > 25 && curr.age < 36) ? acc + 1 : acc + 0), 0),
-        numOldVotesPeople: voters.reduce((acc: number, curr: voter) => ((curr.age > 36 && curr.age < 55 && curr.voted) ? acc + 1 : acc + 0), 0),
-        numOldsPeople: voters.reduce((acc: number, curr: voter) => ((curr.age > 36 && curr.age < 55) ? acc + 1 : acc + 0), 0)
-    }
+    return voters.reduce(
+        (acc: voterResult, curr: voter) => {
+            if (curr.age > 17 && curr.age < 26) {
+                acc.numYoungPeople ++;
+                if (curr.voted) {
+                    acc.numYoungVotes ++;
+                }
+            } else if (curr.age > 25 && curr.age < 36) {
+                acc.numMidsPeople ++;
+                if (curr.voted) {
+                    acc.numMidVotesPeople ++;
+                }
+            } else if (curr.age > 36 && curr.age < 55) {
+                acc.numOldsPeople ++;
+                if (curr.voted) {
+                    acc.numOldVotesPeople ++;
+                }
+            } 
+            return acc;
+        }, { 
+            numYoungVotes: 0,
+            numYoungPeople: 0,
+            numMidVotesPeople: 0,
+            numMidsPeople: 0,
+            numOldVotesPeople: 0,
+            numOldsPeople: 0
+        } as voterResult
+    );
+
 };
 
 type voter = {
     name: string; 
     age: number;
-    voted: boolean
+    voted: boolean;
+}
+
+type voterResult = {
+    numYoungVotes: number;
+    numYoungPeople: number;
+    numMidVotesPeople: number;
+    numMidsPeople: number;
+    numOldVotesPeople: number;
+    numOldsPeople: number;
 }
 
 const voters = [
