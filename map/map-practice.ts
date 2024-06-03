@@ -15,9 +15,9 @@ export class MapClass {
     // returns capitalized array of names
     capitalizeNames(arr: string[]){
         return arr.map((value) => {
-            value = value.toLowerCase();
-            value = value[0].toLocaleUpperCase() + value.slice(1);
-            return value;
+            let resultValue = value.toLowerCase();
+            resultValue = resultValue[0].toLocaleUpperCase() + resultValue.slice(1);
+            return resultValue;
         });
     }
 
@@ -25,8 +25,8 @@ export class MapClass {
         return arr.map((person: person) => person.name);
     }
 
-    isOver18(arr: person[]) {
-        return arr.map((person: person) => person.age > 17 ? `${person.name} is over 18` : `${person.name} is under 18`);
+    is18OrOver(arr: person[]) {
+        return arr.map((person: person) => person.age >= 18 ? `${person.name} is over 18` : `${person.name} is under 18`);
     }
 }
   

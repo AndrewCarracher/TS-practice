@@ -64,7 +64,7 @@ export class ReduceClass {
                 numMidsPeople: 0,
                 numOldVotesPeople: 0,
                 numOldsPeople: 0
-            } as voterResult
+            }
         );  
     };  
 

@@ -41,7 +41,7 @@ test('returns names only', () => {
     expect(mapper.namesOnly(personArray)).toEqual(["Angelina Jolie", "Eric Jones", "Paris Hilton", "Kayne West", "Bob Ziroll"]);
 });
 
-test('is over 18', () => {
+test('is 18 or older', () => {
     const expectedResult = [
         "Angelina Jolie is over 18",
         "Eric Jones is under 18",
@@ -50,5 +50,5 @@ test('is over 18', () => {
         "Bob Ziroll is over 18"
     ];
 
-    expect(mapper.isOver18(personArray)).toEqual(expectedResult);
+    expect(mapper.is18OrOver(personArray)).toEqual(expectedResult);
 });
